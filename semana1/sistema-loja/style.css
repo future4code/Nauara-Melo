@@ -1,0 +1,53 @@
+header {
+    min-height: 10%;
+    background-color: #E6E6FA;
+    color: #000000;
+    padding-top: 1%
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bolder;
+  }
+
+  nav ul {
+    text-align: right;
+    list-style-type: none;
+    margin: 0;
+    padding-bottom: 1%
+  }
+
+    nav ul li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+body {
+    background-color: white;
+    color: black;
+}
+
+footer {
+    min-height: 5%; 
+    background-color: #E6E6FA;
+    text-align: right;
+    color: black;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+th {
+    border: solid black 1px;
+}
+
+td {
+ border: solid black 1px;
+}
+
+label {
+    display: inline-block;
+    width: 90px;
+}
