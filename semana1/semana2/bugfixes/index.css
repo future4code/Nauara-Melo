@@ -22,8 +22,15 @@ input {
     width: 500px;
 }
 
+input:focus {
+    box-shadow: none;
+    outline: 0;    
+}
+
 button:focus {
     color: white;
+    box-shadow: none;
+    outline: 0;
 }
 
 img {
