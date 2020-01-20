@@ -133,6 +133,11 @@ td button:hover {
     height: 100px;
 }
 
+.container-do-search input {
+    border: none;
+    border-bottom: solid 1px;
+}
+
 .container-do-search img:hover {
     opacity: 30%;
 }
