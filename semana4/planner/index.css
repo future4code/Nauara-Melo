@@ -1,0 +1,28 @@
+body {
+    font-family: "Roboto";
+    background-color: #F0FFF0;
+}
+
+header {
+    text-align: center;
+}
+
+
+main {
+    text-align: center;
+    margin-top: 50px;
+    border: solid 1px;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto; 
+    /* grid-template-rows: auto; */
+}
+
+div {
+    border: solid 1px;
+    height: 400px;
+}
+
+.sublinhado {
+    text-decoration: line-through;
+}
+
