@@ -9,9 +9,17 @@ function criarTarefa() {
         const divDiadaSemana = document.getElementById(diaSelecionado)
     
         const listaTarefas = divDiadaSemana.querySelector('ul')
-        listaTarefas.innerHTML += "<li>" + inputNomeTarefa.value + "</li>"
+
+        listaTarefas.innerHTML += "<li onclick='adicionarRemoverSublinhado(this)'>" + inputNomeTarefa.value + "</li>"
     
         inputNomeTarefa.value = ""
     }
+}
 
+function adicionarRemoverSublinhado(elemento) {
+    if (elemento.className !== 'sublinhado') {
+        elemento.className = 'sublinhado'
+    } else {
+        elemento.className = ''
+    }
 }
