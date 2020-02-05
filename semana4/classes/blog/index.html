@@ -11,21 +11,25 @@
 </head>
 <body>
     <main>
-        <form>
-            <label for="titulo"> Título </label>
-            <input type="text" id="titulo" /> 
+        <label for="titulo"> Título </label>
+        <input type="text" id="titulo" /> 
+        
+        <label for="autor"> Autor </label>
+        <input type="text" id="autor" /> 
+        
+        <label for="data"> Data </label>
+        <input type="text" id="data">
+        
+        <textarea id="conteudo" rows="4" cols="50" placeholder="Escreva aqui seu conteúdo."></textarea>      
+        
+        <button onclick="criarPost()"> Criar </button>
 
-            <label for="autor"> Autor </label>
-            <input type="text" id="autor" /> 
+        <div class="posts" id="posts">
+            <ul> </ul>
+        </div>
 
-            <textarea id="conteudo" rows="4" cols="50" placeholder="Escreva aqui seu conteúdo."></textarea>      
-            
-            <label for="data"> Data </label>
-            <input type="text" id="data">
+        <button onclick="exibirPosts()"> Exibir posts </button>
 
-            <button onclick="criarPost()"> Criar </button>
-        </form>
     </main>
-
 </body>
 </html>
