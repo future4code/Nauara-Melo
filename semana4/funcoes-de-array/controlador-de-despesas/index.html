@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="index.css" type="text/css" rel="stylesheet">
+    <script src="index.js" defer></script>
+    <title>Document</title>
+</head>
+<body>
+    <main>
+        <section id=sectionCadastro>
+            <span><h1> Controlador de Despesas </h1> </span>
+            <span> <h3>Cadastrar despesa</h3></span>
+
+            <label for="valor"> Valor </label>
+            <input type="number" id="valor">
+
+            <label for="tipo"> Tipo </label>
+            <select id="tipo">
+                <option value="casa"> Casa </option>
+                <option value="alimentacao"> Alimentação </option>
+                <option value="lazer"> Transporte </option>
+                <option value="outros"> Outros </option>
+            </select i>
+
+            <label for="descricao"> Descrição </label>
+            <input type="text" id="descricao">
+
+            <button onclick="cadastrarDespesa()"> Cadastrar Despesa </button>
+
+        </section>
+
+        <section id="despesasDetalhadas">
+            <span><h1> Despesas Detalhadas </h1></span>
+
+            <label for="tipoDespesaExtrato"> Tipo </label>
+            <select id="tipoDespesaExtrato">
+                <option value="casa"> Casa </option>
+                <option value="alimentacao"> Alimentação </option>
+                <option value="lazer"> Transporte </option>
+                <option value="outros"> Outros </option>
+            </select>
+
+            <label for="valorMinimo"> Valor Mínimo </label>
+            <input type="number" id="valorMinimo">
+
+            <label for="valorMaximo"> Valor Maximo </label>
+            <input type="number" id="valorMaximo">
+            
+            <button onclick="filtrarDespesa()"> Filtrar </button>
+
+            <button onclick="limparFiltros()"> Limpar Filtros </button>
+
+            <ul> </ul>
+
+        </section>
+
+        <section id="extrato">
+            <h1>Extrato</h1>
+            <h3> Valor Total: </h3> <span id="valorTotal"></span>
+
+        </section>
+    </main>
+</body>
+</html>
