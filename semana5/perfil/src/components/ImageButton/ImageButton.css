@@ -1,0 +1,10 @@
+button {
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.image-button img {
+    border-radius: 50%;
+    width: 2em;
+    height: 2em;
+}
