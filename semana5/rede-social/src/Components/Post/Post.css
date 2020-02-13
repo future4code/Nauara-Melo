@@ -4,11 +4,15 @@
     margin: 10px 0;
 }
 
-.post-container > img {
+/* .post-container > img {
     width: 100%;
-}
+} */
 
-.botoes {
+/* PostContainer > img {
+    width: 100%;
+} */
+
+/* .botoes {
     display: flex;
     justify-content: space-between;
 }
@@ -16,4 +20,4 @@
 .botoes > div {
     display: flex;
     align-items: center;
-}
+} */
