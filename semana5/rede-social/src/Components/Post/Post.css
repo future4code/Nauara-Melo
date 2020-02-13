@@ -1,0 +1,19 @@
+.post-container {
+    width: 300px;
+    border: 1px solid black;
+    margin: 10px 0;
+}
+
+.post-container > img {
+    width: 100%;
+}
+
+.botoes {
+    display: flex;
+    justify-content: space-between;
+}
+
+.botoes > div {
+    display: flex;
+    align-items: center;
+}
