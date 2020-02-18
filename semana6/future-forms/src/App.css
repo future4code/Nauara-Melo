@@ -1,0 +1,30 @@
+form {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%) 
+}
+
+form input {
+  display: block;
+  border: 1px solid black;
+  margin-bottom: 10px;
+}
+
+form select {
+  display: block;
+  margin-bottom: 10px;
+}
+
+form label {
+  display: block;
+  padding-bottom: 10px;
+}
+
+form button {
+  margin-bottom: 10px;
+}
+
+h3 {
+  text-align: center;
+}
