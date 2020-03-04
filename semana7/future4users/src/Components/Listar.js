@@ -33,29 +33,29 @@ class ListarUsuario extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          todosUsers: [],
+          ListaDeUsuarios: [],
         }
     }
 
-    componentDidMount () {
-        this.listarTodosUsuarios ()
+    buscarListaDeUsuarios = async () => {
+        try {
+            const response = await axios.get(`${baseUrl}/users/getAllUsers`, {
+                headers: {
+                    'api-token': authtoken
+                }
+            })
+
+            const ListaDeUsuarios = response.data.result;
+            this.setState({ ListaDeUsuarios: ListaDeUsuarios });
+
+        } catch(error) {
+            alert('Não foi possível buscar a lista de usuários!')
+            this.setState({ ListaDeUsuarios: [] })
+        }   
     }
 
-    listarTodosUsuarios = () => {
-        const todosUsersPromessa = axios.get(`${baseUrl}/users/getAllUsers`, {
-            headers: {
-                'api-token': authtoken
-            }
-        })
-
-        todosUsersPromessa
-        .then(response => {
-            this.setState({ todosUsers: response.data.result });
-        })
-        .catch(error => {
-            alert('Erro!')
-        })
-
+    componentDidMount () {
+        this.buscarListaDeUsuarios()
     }
 
     deletarUsuario = (id) => {
@@ -69,9 +69,10 @@ class ListarUsuario extends Component {
         )
 
         deletarUsuarioPromessa.then(response => {
-            alert('Usuario deletado com sucesso!')
+            alert('Usuario deletado com sucesso!');
+            this.buscarListaDeUsuarios();
         }).catch(error => {
-            alert('Por favor, tente novamente!')
+            alert('Por favor, tente novamente!');
         })
     }
 
@@ -82,7 +83,7 @@ class ListarUsuario extends Component {
                     <div>
                         <ListaNaoOrdenada>
                             <h3>Usuários Cadastrados:</h3>
-                         { this.state.todosUsers.map(usuario => {
+                         { this.state.ListaDeUsuarios.map(usuario => {
                              return <LiFormatado> {usuario.name} <SpanDelete onClick={ () => this.deletarUsuario(usuario.id) }> X </SpanDelete> </LiFormatado>
                          }) }
                         </ListaNaoOrdenada>
