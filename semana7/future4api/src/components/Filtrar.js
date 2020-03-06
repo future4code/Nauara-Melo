@@ -53,7 +53,7 @@ class Filtrar extends React.Component {
     render() {
         return(
             <BoxContainer>
-                <h3>Por favor, selecione o tipo de atividade que deseja realizar.</h3>
+                <h3>Please, select the type of activity :).</h3>
                 <select onChange={this.handleOnChangeType} value={this.state.typeOfActivity}>
                 <option value="education"> Education</option>
                 <option value="recreational"> Recreational</option>
