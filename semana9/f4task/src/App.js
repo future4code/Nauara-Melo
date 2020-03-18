@@ -1,7 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import { rootRedurces } from './redurces';
+import TaskForm from './components/TaskForm';
+import TaskList from './components/TaskList';
+import Ferraments from './components/Ferraments';
 
-
+/* 
 const Header = styled.header`
   height: 45px;
   color: white;
@@ -41,7 +47,6 @@ const Titulo = styled.h1`
   font-size: 5vh;
 `
 
-
 function App() {
   return (
     <Container>
@@ -60,5 +65,20 @@ function App() {
     </Container>
   );
 }
+ 
+export default App; */
 
-export default App;
+const store = createStore(rootRedurces);
+
+export default function App () {
+  return (
+    <Provider store={store}>
+      <div>
+        <h1>4Tasks</h1>
+        <TaskForm/>
+        <TaskList />
+        <Ferraments/>
+      </div>  
+    </Provider>
+  )
+}
