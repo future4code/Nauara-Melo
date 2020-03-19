@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createTask } from '../actions/todos';
+import { createTask } from '../../actions/todos';
 
 class TaskForm extends React.Component {
     constructor(props) {
         super(props);
+
         this.state = {
             inputText: ''
         };
@@ -12,11 +13,11 @@ class TaskForm extends React.Component {
 
 
     onChangeInput = (event) => {
-        this.setState({inputText: event.target.value});
+        this.setState({ inputText: event.target.value });
     };
 
     buttonAdd = () => {
-        this.props.createTask(this.state.inputText)
+        this.props.addTask(this.state.inputText)
     }
 
     render() {
@@ -36,11 +37,11 @@ const mapStateToProps = state => {
     
 const mapDispatchToProps = dispatch => {
     return {
-        createTask: text => {
+        addTask: text => {
             const action = createTask(text)
             dispatch(action);
         }
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TaskForm); 
+export default connect(null, mapDispatchToProps)(TaskForm); 
