@@ -1,4 +1,4 @@
-import { deleteTask, completeAllTasks, setFilter} from "../actions/todos";
+import { deleteTask, completeAllTasks, setFilter, createTask} from "../actions/todos";
 import { deleteAllTasks } from "../actions/todos"; 
 
 const initalState = {
@@ -6,83 +6,94 @@ const initalState = {
         {
             id: 1,
             text: 'Task one',
-            complete: false
+            done: false
         },
         {
             id: 2,
             text: 'Task two',
-            complete: true
+            done: true
         }
     ],
+    taskList: [],
     filter: 'todas'    
 }
 
 export const todos = (state = initalState, action) => {
     switch(action.type) {
-        case 'ADD_TASK':
+        case 'CREATE_TASK':
             const newTodo = {
                 id: Date.now(),
                 text: action.payload.text,
-                complete: false,
+                done: false,
             };
+
             return {
                 ...state,
-                todosList: [newTodo, ...state.todosList]
+                taskList: [newTodo, ...state.taskList]
             }
         case 'TOGGLE_TASK': {
-            const newTodosList = state.todosList.map( todo => {
+            const newTodosList = state.taskList.map( todo => {
                 if(todo.id === action.payload.id) {
                     return {
                         ...todo,
-                        complete: !todo.complete
+                        done: !todo.done
                     }
                 }
                 return todo
             })
             return {
                 ...state,
-                todosList: newTodosList
+                taskList: newTodosList
             };
         }    
         case 'DELETE_TASK': {
-            const newTodosList = state.todosList.filter(todo => {
-                if(todo.id === action.payload.id) {
+            const newTodosList = state.taskList.filter(todo => {
+                if (todo.id === action.payload.id) {
                     return false
                 }
+
+                return true
             })
             return {
                 ...state,
-                todosList: newTodosList
+                taskList: newTodosList
             };
         }
         case 'COMPLETE_ALL_TASKS': {
-            const newTodosList = state.todosList.map( todo => {
+            const newTodosList = state.taskList.map( todo => {
                 return {
                     ...todo,
-                    complete: true
+                    done: true
                 };
             }); 
             return {
                 ...state,
-                todosList: newTodosList
+                taskList: newTodosList
             };
         }   
         case 'DELETE_ALL_COMPLETE_TASKS': {
-            const newTodosList = state.todosList.filter(todo => {
-                if(todo.complete) {
+            const newTodosList = state.taskList.filter(todo => {
+                if (todo.done) {
                     return false;
                 }
                 return true;
             });
             return {
                 ...state,
-                todosList: newTodosList
+                taskList: newTodosList
             };
         } 
         case 'SET_FILTER': {
+            console.log('oi')
             return {
                 ...state,
                 filter: action.payload.filter
+            }
+        }
+        case 'SET_TASKS': {
+            return {
+                ...state,
+                taskList: action.payload.taskList
             }
         }
         default:

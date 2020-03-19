@@ -1,7 +1,8 @@
+import axios from 'axios';
 
-export const addTask = (text) => {
+export const CreateTask = (text) => {
     return {
-        type: 'ADD_TASK',
+        type: 'CREATE_TASK',
         payload: {
             text: text
         }
@@ -46,3 +47,60 @@ export const setFilter = (filter) => {
         }
     };
 };
+
+export const setList = taskList => {
+    return {
+        type: 'SET_TASKS',
+        payload: {
+            taskList
+        }
+    }
+}
+
+
+export const createTask = (text) => async (dispatch, getState) => {
+    try {
+        await axios.post(
+            "https://us-central1-missao-newton.cloudfunctions.net/reduxTodo/nauaramelo/todos",
+            {
+                text
+            }
+        );
+
+        dispatch(CreateTask(
+            text
+        ));
+    } catch (error) {
+        console.log('oi')
+    }
+};
+
+export const getTask = () => async (dispatch) => {
+    const response = await axios.get("https://us-central1-missao-newton.cloudfunctions.net/reduxTodo/nauaramelo/todos");
+    
+    dispatch(setList(response.data.todos));
+};
+
+export const checkedTask = (id) => async (dispatch) => {
+    const response = await axios.put(
+        `https://us-central1-missao-newton.cloudfunctions.net/reduxTodo/nauaramelo/todos/${id}/toggle`
+    );
+
+    dispatch(toggleTask(id))
+};
+
+export const removeTask = (id) => async (dispatch) => {
+    const response = await axios.delete(
+        `https://us-central1-missao-newton.cloudfunctions.net/reduxTodo/nauaramelo/todos/${id}`
+    )
+
+    dispatch(deleteTask(id))
+};
+
+ export const deleteDoneTodos = () => async (dispatch) => {
+     const response = await axios.delete(
+        'https://us-central1-missao-newton.cloudfunctions.net/reduxTodo/nauaramelo/todos/delete-done'
+    )
+
+    dispatch(deleteAllCompleteTasks())
+ }; 
