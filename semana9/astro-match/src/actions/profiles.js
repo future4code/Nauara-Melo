@@ -6,18 +6,14 @@ const clearMatches = () => {
 	};
 };
 
-const matches = (data) => {
+const matches = (matchesList) => {
 	return {
 		type: 'MATCHES',
 		payload: {
-			data
+			matchesList
 		}
 	}
 }
-
-const chooseAPerson = () => ({
-	type: "CHOOSE_A_PERSON"
-})
 
 const profileToChoose = (profile) => {
 	return {
@@ -28,7 +24,6 @@ const profileToChoose = (profile) => {
 	}
 }
 
-
 export const clearSwipes = () => async (dispatch) => {
 	await axios.put(
 		'https://us-central1-missao-newton.cloudfunctions.net/astroMatch/nauaramelo/clear'
@@ -37,7 +32,7 @@ export const clearSwipes = () => async (dispatch) => {
 	dispatch(clearMatches())
 }
 
-export const matchesList = () => async (dispatch) => {
+export const getMatches = () => async (dispatch) => {
 	const response = await axios.get(
 		'https://us-central1-missao-newton.cloudfunctions.net/astroMatch/nauaramelo/matches'
 	)
@@ -45,12 +40,13 @@ export const matchesList = () => async (dispatch) => {
 	dispatch(matches(response.data.matches))
 }
 
-export const choosePerson = () => async (dispatch) => {
-	await axios.post(
-		'https://us-central1-missao-newton.cloudfunctions.net/astroMatch/nauaramelo/choose-person'
+export const choosePerson = (id, choice) => async (dispatch) => {
+	const response = await axios.post(
+		'https://us-central1-missao-newton.cloudfunctions.net/astroMatch/nauaramelo/choose-person',
+		{ id, choice }
 	)
 
-	dispatch(chooseAPerson)
+	dispatch(getProfileToChoose())
 }
 
 export const getProfileToChoose = () => async (dispatch) => {
