@@ -30,18 +30,28 @@ class LoginPage extends Component {
     });
   };
 
+  handleOnSubmit = event => {
+    // Normalmente um formulário troca de página, a linha abaixo
+    // previne essa mudança
+    event.preventDefault();
+    // seria o momento, por exemplo, de fazer o dipatch da action
+
+    this.props.goToSwipeScreen()
+  };
+
   render() {
     const { email, password } = this.state;
     const { goToSwipeScreen } = this.props;
 
     return (
-      <LoginWrapper>
+      <LoginWrapper onSubmit={this.handleOnSubmit}>
         <TextField
           onChange={this.handleFieldChange}
           name="email"
           type="email"
           label="E-mail"
-          value={email}
+          value={this.state.email}
+          inputProps = { { pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" } }
         />
         <TextField
           onChange={this.handleFieldChange}
@@ -49,15 +59,17 @@ class LoginPage extends Component {
           type="password"
           label="Password"
           value={password}
+          inputProps={ { pattern: "^[a-z]{3,}$" } }
+          /* required={required.input} */
         />
-        <Button onClick={goToSwipeScreen}>Login</Button>
+        <Button type="submit">Login</Button>
       </LoginWrapper>
     );
   }
 }
 
 const mapDispatchToProps = dispatch => ({
-  goToSwipeScreen: () => dispatch(push('/home')),
+  goToSwipeScreen: () => dispatch(push(routes.inscrition)),
 });
 
 export default connect(
