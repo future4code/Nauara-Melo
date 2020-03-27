@@ -5,6 +5,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import styled from "styled-components";
 import { routes } from "../Router"
+import { signInUser } from "../../actions/login";
 
 const LoginWrapper = styled.form`
   width: 100%;
@@ -31,17 +32,13 @@ class LoginPage extends Component {
   };
 
   handleOnSubmit = event => {
-    // Normalmente um formulário troca de página, a linha abaixo
-    // previne essa mudança
     event.preventDefault();
-    // seria o momento, por exemplo, de fazer o dipatch da action
 
-    this.props.goToSwipeScreen()
+    this.props.signIn(this.state.email, this.state.password)
   };
 
   render() {
     const { email, password } = this.state;
-    const { goToSwipeScreen } = this.props;
 
     return (
       <LoginWrapper onSubmit={this.handleOnSubmit}>
@@ -59,7 +56,7 @@ class LoginPage extends Component {
           type="password"
           label="Password"
           value={password}
-          inputProps={ { pattern: "^[a-z]{3,}$" } }
+          inputProps={ { pattern: "^.{3,}$" } }
           /* required={required.input} */
         />
         <Button type="submit">Login</Button>
@@ -69,7 +66,7 @@ class LoginPage extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  goToSwipeScreen: () => dispatch(push(routes.inscrition)),
+  signIn: (email, password) => dispatch(signInUser(email, password))
 });
 
 export default connect(
