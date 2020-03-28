@@ -1,29 +1,38 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import { push } from "connected-react-router";
-import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import styled from "styled-components";
 import { routes } from "../Router"
+import logo from '../../img/futurex.png'
+import { connect } from "react-redux";
+import { push } from "connected-react-router";
 
-const LoginWrapper = styled.form`
-  width: 100%;
-  height: 100vh;
-  gap: 10px;
-  place-content: center;
-  justify-items: center;
-  display: grid;
+const Container = styled.div`
+  justify-content: center;
+  display: flex;
 `;
 
-class HomePage extends Component {
+const Center = styled.div`
+  text-align: center;
+`
 
+class HomePage extends Component {
   render() {
     return (
-        <div>
-            Pagina home
-        </div>
+        <Container>
+          <Center>
+            <img src={logo} width="300ch" />
+            <h2>Encontre as melhores viagens espaciais!</h2>
+            <Button type="button" color="primary" onClick={this.props.redirectLogin}> Login </Button>
+            <Button type="button" color="primary" onClick={this.props.redirectInscrition}> Inscreva-se </Button>
+          </Center>
+        </Container>
     );
   }
 }
 
-export default HomePage;
+const mapDispatchToProps = dispatch => ({
+  redirectInscrition: () => dispatch(push(routes.inscrition)),
+  redirectLogin: () => dispatch(push(routes.root))   
+})
+
+export default connect(null, mapDispatchToProps)(HomePage)

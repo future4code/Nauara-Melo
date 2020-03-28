@@ -7,8 +7,17 @@ import styled from "styled-components";
 import { routes } from "../Router"
 import { Input, MenuItem } from "@material-ui/core";
 import { createTrip } from '../../actions/trips'
+import TextFieldComponent from '../../components/TextFieldComponent'
 
 const planets = ['Mercurio', 'Vênus', 'Terra', 'Marte', 'Júpiter', 'Saturno', 'Urano', 'Netuno', 'Plutão']
+
+const Root = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+`
 
 const field = [
     {
@@ -72,38 +81,22 @@ class CreateTripPage extends Component {
 
     render() {
         return (
-            <form onSubmit={this.handleOnSubmit}>
-                 { field.map(input => (
-                    input.type == 'select' ?
+            <Root>
+                <form onSubmit={this.handleOnSubmit}>
+                    { field.map(input => (
                         <div key={input.name}>
-                            <TextField
-                                select
-                                onChange={this.handleInputChange}
-                                name={input.name}
-                                type={input.type}
-                                label={input.label}
-                                required={input.required}
+                            <TextFieldComponent
+                                input={input}
+                                isOptionsObject={false}
+                                handleInputChange={this.handleInputChange}
+                                options={input.options}
                                 value={this.state.form[input.name]}
-                            >
-                                {input.options.map(option => (
-                                    <MenuItem key={option} value={option} > {option} </MenuItem>
-                                ))}
-                            </TextField>
-                        </div>
-                    :
-                        <div key={input.name}>
-                            <TextField 
-                                onChange={this.handleInputChange}
-                                name={input.name}
-                                type={input.type}
-                                label={input.label}
-                                inputProps={ { pattern: input.pattern } }
-                                required={input.required}
                             />
                         </div>
-                ))}
-                <Button type="submit"> Enviar </Button>
-            </form>
+                    ))}
+                    <Button type="submit"> Enviar </Button>
+                </form>
+            </Root>
         )
     }
 }

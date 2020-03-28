@@ -65,8 +65,9 @@ export const applyToTrip = (id, candidate) => async (dispatch) => {
             `${baseUrlTrips}/${id}/apply`,
             candidate
         )
-
-        dispatch(push(routes.inscrition))
+        
+        alert('Inscrição realizada com sucesso.')
+        dispatch(push(routes.home))
 
     } catch (error) {
         alert('Por favor, tente novamente.')

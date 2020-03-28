@@ -13,9 +13,9 @@ export const routes = {
   root: "/",
   home:  "/home",
   inscrition: "/form",
-  createtrip: "/createtrip",
-  listtrip: "/listtrip",
-  detailtrip: "/detailtrip"
+  createtrip: "/create-trip",
+  listtrip: "/list-trip",
+  detailtrip: "/detail-trip"
 };
 
 function Router(props) {
