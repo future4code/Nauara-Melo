@@ -1,7 +1,70 @@
 import React from "react";
 import { connect } from "react-redux";
 import { createTask, listTasks } from '../../actions/todos';
+import styled from "styled-components";
+import foto2 from '../../img/foto2.png';
 
+const Container = styled.div`
+  background-image: url(${foto2});
+  background-color: #F0FFF0;
+  background-size: contain;
+`
+const Header = styled.footer`
+  background-color:	#B0C4DE; 
+  color: whitesmoke;
+  font-size: 25px;
+  height: 40px;
+  text-align: center;
+  padding-top: 10px;
+`
+const CreateTask = styled.div`
+  text-align: center;
+  margin-top: 40px;
+`
+const ListTasks = styled.div`
+  font-family: "Roboto";
+  text-align: center;
+  margin-top: 50px;
+  border: solid 1px;
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto; 
+`
+const DivTask = styled.div`
+  border: solid 1px;
+  height: 400px;
+`
+
+const TituloStyle = styled.span`
+  font-weight: bold;
+  margin-bottom: 10px;
+`
+
+const InputStyle = styled.input`
+  margin: 0.5%;
+`
+const SelectStyle = styled.select`
+  margin: 0.5%;
+`
+const UlStyle = styled.ul`
+  margin: 0;
+  padding: 0;
+`
+
+const LiStyle = styled.li`
+  list-style-type: none;
+  text-align: left;
+  padding-top: 10px;
+  padding-left: 10px;
+`
+
+const Footer = styled.footer`
+  background-color:	#B0C4DE; 
+  color: whitesmoke;
+  font-size: 25px;
+  height: 40px;
+  text-align: center;
+  padding-top: 10px;
+`
 
 class Planner extends React.Component {
   constructor(props) {
@@ -36,11 +99,44 @@ class Planner extends React.Component {
   };
 
   render() {
+
+    const tasksSeg = this.props.tasks.filter((task) => {
+      return task.day === "seg"
+    })
+
+    const tasksTer = this.props.tasks.filter((task) => {
+      return task.day === "ter"
+    })
+
+    const tasksQua = this.props.tasks.filter((task) => {
+      return task.day === "qua"
+    })    
+
+    const tasksQui = this.props.tasks.filter((task) => {
+      return task.day === "qui"
+    })
+
+    const tasksSex = this.props.tasks.filter((task) => {
+      return task.day === "sex"
+    })
+
+    const tasksSab = this.props.tasks.filter((task) => {
+      return task.day === "sab"
+    })
+
+    const tasksDom = this.props.tasks.filter((task) => {
+      return task.day === "dom"
+    })
+
     return(
-      <div>
+      <Container>
+        <Header>
+          MINHA SEMANA
+        </Header>
+        <CreateTask>
           <label for='novaTarefa'> Nova Tarefa: </label>
-          <input type='text' name="textTask" onChange={this.handleOnChange} id='novaTarefa' value={this.state.textTask}/>
-          <select id='diaDaSemana' name="dayOfWeek" onChange={this.handleOnChange} value={this.state.dayOfWeek}>
+          <InputStyle type='text' name="textTask" onChange={this.handleOnChange} id='novaTarefa' value={this.state.textTask}/>
+          <SelectStyle id='diaDaSemana' name="dayOfWeek" onChange={this.handleOnChange} value={this.state.dayOfWeek}>
             <option value="seg"> Segunda-Feira </option>
             <option value="ter"> Terça-Feira </option>
             <option value="qua"> Quarta-Feira </option>
@@ -48,17 +144,87 @@ class Planner extends React.Component {
             <option value="sex"> Sexta-Feira </option>
             <option value="sab"> Sábado </option>
             <option value="dom"> Domingo </option>
-          </select>
-          <button onClick={this.handleOnClick}> Criar Tarefa! </button>
+          </SelectStyle>
+          <button onClick={this.handleOnClick}> Criar Tarefa! </button>          
+        </CreateTask>
 
-          {this.props.tasks.map(task => {
-            return (
-              <div>
-                {task.day} - {task.text}
-              </div>
-            )
-          })}
-      </div> 
+
+        <ListTasks> 
+          <DivTask> 
+            <TituloStyle> Segunda-Feira </TituloStyle>
+              <UlStyle> 
+                {tasksSeg.map(task => {
+                  return (
+                  <LiStyle>{task.text}</LiStyle>
+                  )
+                })}
+              </UlStyle>
+          </DivTask>
+          <DivTask>
+          <TituloStyle> Terça-Feira </TituloStyle>
+              <UlStyle>
+                {tasksTer.map(task => {
+                  return (
+                  <LiStyle>{task.text}</LiStyle>
+                  )
+                })}
+              </UlStyle>
+          </DivTask>
+          <DivTask>
+          <TituloStyle> Quarta-Feira </TituloStyle>
+              <UlStyle>
+                {tasksQua.map(task => {
+                  return (
+                  <LiStyle>{task.text}</LiStyle>
+                  )
+                })}
+              </UlStyle>
+          </DivTask>
+          <DivTask>
+            <TituloStyle> Quinta-Feira </TituloStyle>
+              <UlStyle>
+                {tasksQui.map(task => {
+                  return (
+                  <LiStyle>{task.text}</LiStyle>
+                  )
+                })}
+              </UlStyle>
+          </DivTask>
+          <DivTask>
+            <TituloStyle> Sexta-Feira </TituloStyle>
+              <UlStyle>
+                {tasksSex.map(task => {
+                  return (
+                  <LiStyle>{task.text}</LiStyle>
+                  )
+                })}
+              </UlStyle>
+          </DivTask>
+          <DivTask>
+            <TituloStyle> Sábado </TituloStyle>
+              <UlStyle>
+                {tasksSab.map(task => {
+                  return (
+                  <LiStyle>{task.text}</LiStyle>
+                  )
+                })}
+              </UlStyle>
+          </DivTask>
+          <DivTask>
+            <TituloStyle> Domingo </TituloStyle>
+              <UlStyle>
+                {tasksDom.map(task => {
+                  return (
+                  <LiStyle>{task.text}</LiStyle>
+                  )
+                })}
+              </UlStyle>
+          </DivTask>            
+        </ListTasks>
+        <Footer>
+          @nauaramelo
+        </Footer>
+      </Container> 
     )
   }
 }
