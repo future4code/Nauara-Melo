@@ -1,0 +1,11 @@
+{
+  "name": "mycalculator",
+  "version": "1.0.0",
+  "description": "Calculadora",
+  "main": "myCalculator.js",
+  "scripts": {
+    "start": "node myCalculator.js add 2 2"
+  },
+  "author": "nauaramelo",
+  "license": "ISC"
+}

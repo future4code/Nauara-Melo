@@ -1,0 +1,11 @@
+{
+  "name": "gestordetarefas",
+  "version": "1.0.0",
+  "description": "Gestor de tarefas",
+  "main": "gestorDeTarefas.js",
+  "scripts": {
+    "start": "node gestorDeTarefas.js tarefas.txt \"tarefa do dia\" "
+  },
+  "author": "nauaramelo",
+  "license": "ISC"
+}
