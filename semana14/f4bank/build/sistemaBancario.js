@@ -55,6 +55,13 @@ function getBalance(name, cpf) {
     const account = getAllAccounts().find(account => account.name === name && account.cpf === cpf);
     return account.balance;
 }
+function addBalance(name, cpf, valor) {
+    const allAccounts = getAllAccounts();
+    const account = allAccounts.find(account => account.name === name && account.cpf === cpf);
+    account.balance += valor;
+    saveInJson(allAccounts);
+    console.log("Saldo atualizado com sucesso.");
+}
 const account = {
     name: 'Aderbal Piragibe',
     birthDate: '21/12/1989',
@@ -62,5 +69,6 @@ const account = {
     balance: 0.00,
     extract: []
 };
+addBalance("Aderbal Piragibe", "123.321.123-32", 10);
 console.log(getBalance("Aderbal Piragibe", "123.321.123-32"));
 //# sourceMappingURL=sistemaBancario.js.map

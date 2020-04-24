@@ -82,7 +82,20 @@ function getBalance(name: string, cpf: string): number {
     return account.balance
 }
 
+function addBalance(name: string, cpf: string, valor: number): void {
+    
+    const allAccounts: bankAccount[] = getAllAccounts()
 
+    const account: bankAccount = allAccounts.find(
+        account => account.name === name && account.cpf === cpf
+    )
+
+    account.balance += valor
+
+    saveInJson(allAccounts)
+
+    console.log("Saldo atualizado com sucesso.")
+}
 
 const account: bankAccount = {
     name: 'Aderbal Piragibe',
@@ -95,4 +108,5 @@ const account: bankAccount = {
 
 /* createAccount(account) */
 /* console.log(getAllAccounts()) */
-console.log(getBalance("Aderbal Piragibe", "123.321.123-32")) 
+addBalance("Aderbal Piragibe", "123.321.123-32", 10)
+console.log(getBalance("Aderbal Piragibe", "123.321.123-32"))  
