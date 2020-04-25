@@ -16,7 +16,6 @@ function hasAgePermited(birthDate) {
     }
 }
 function hasExistCpf(accounts, newAccount) {
-    console.log(accounts);
     for (let account of accounts) {
         if (account.cpf === newAccount.cpf) {
             console.log("CPF já cadastrado.");
@@ -28,7 +27,6 @@ function hasExistCpf(accounts, newAccount) {
 function saveInJson(accounts) {
     try {
         fs_1.writeFileSync('./files/accounts.json', JSON.stringify(accounts));
-        console.log('Conta cadastrada com sucesso!');
     }
     catch (error) {
         console.log('Por favor, tente novamente');
@@ -39,6 +37,7 @@ function createAccount(account) {
     if (hasAgePermited(account.birthDate) && !hasExistCpf(accounts, account)) {
         accounts.push(account);
         saveInJson(accounts);
+        console.log('Conta cadastrada com sucesso!');
     }
 }
 function getAllAccounts() {
@@ -51,24 +50,48 @@ function getAllAccounts() {
         console.error(err);
     }
 }
+function getAccountByNameAndCpf(name, cpf, accounts) {
+    const bankAccounts = accounts || getAllAccounts();
+    const account = bankAccounts.find(account => account.name === name && account.cpf === cpf);
+    return account;
+}
 function getBalance(name, cpf) {
-    const account = getAllAccounts().find(account => account.name === name && account.cpf === cpf);
+    const account = getAccountByNameAndCpf(name, cpf);
     return account.balance;
 }
-function addBalance(name, cpf, valor) {
+function addBalance(name, cpf, value) {
     const allAccounts = getAllAccounts();
-    const account = allAccounts.find(account => account.name === name && account.cpf === cpf);
-    account.balance += valor;
+    const account = getAccountByNameAndCpf(name, cpf, allAccounts);
+    account.balance += value;
     saveInJson(allAccounts);
     console.log("Saldo atualizado com sucesso.");
 }
-const account = {
-    name: 'Aderbal Piragibe',
-    birthDate: '21/12/1989',
-    cpf: '123.321.123-32',
-    balance: 0.00,
-    extract: []
-};
-addBalance("Aderbal Piragibe", "123.321.123-32", 10);
-console.log(getBalance("Aderbal Piragibe", "123.321.123-32"));
+function run() {
+    const operation = process.argv[4];
+    if (operation === 'create') {
+        const account = {
+            name: process.argv[5],
+            birthDate: process.argv[6],
+            cpf: process.argv[7],
+            balance: 0.00,
+            extract: []
+        };
+        createAccount(account);
+    }
+    if (operation === 'getAccounts') {
+        console.log(getAllAccounts());
+    }
+    if (operation === 'addBalance') {
+        const name = process.argv[5];
+        const cpf = process.argv[6];
+        const value = Number(process.argv[7]);
+        addBalance(name, cpf, value);
+    }
+    if (operation === 'getBalance') {
+        const name = process.argv[5];
+        const cpf = process.argv[6];
+        console.log(`O saldo do usuário: ${name} com cpf: ${cpf} é R$: ${getBalance(name, cpf).toFixed(2)}`);
+    }
+}
+run();
 //# sourceMappingURL=sistemaBancario.js.map

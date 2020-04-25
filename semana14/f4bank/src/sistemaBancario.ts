@@ -32,8 +32,6 @@ function hasAgePermited(birthDate: string): boolean {
 
 function hasExistCpf(accounts: bankAccount[], newAccount: bankAccount): boolean {
 
-    console.log(accounts)
-
     for (let account of accounts) {
         if (account.cpf === newAccount.cpf) {
             console.log("CPF já cadastrado.")
@@ -47,7 +45,6 @@ function hasExistCpf(accounts: bankAccount[], newAccount: bankAccount): boolean 
 function saveInJson(accounts: bankAccount[]): void {
     try {
         writeFileSync('./files/accounts.json', JSON.stringify(accounts))
-        console.log('Conta cadastrada com sucesso!')
     } catch (error) {
         console.log('Por favor, tente novamente')
     }
@@ -59,6 +56,7 @@ function createAccount(account: bankAccount): void {
     if (hasAgePermited(account.birthDate) && !hasExistCpf(accounts, account)) {
         accounts.push(account)
         saveInJson(accounts)
+        console.log('Conta cadastrada com sucesso!')
     }
 }
 
@@ -73,40 +71,70 @@ function getAllAccounts(): bankAccount[] {
     }
 }
 
+function getAccountByNameAndCpf(name: string, cpf: string, accounts?: bankAccount[]): bankAccount {
+    const bankAccounts: bankAccount[] = accounts || getAllAccounts()
+
+    const account: bankAccount = bankAccounts.find(
+        account => account.name === name && account.cpf === cpf
+    )
+
+    return account
+}
+
 function getBalance(name: string, cpf: string): number {
     
-   const account: bankAccount = getAllAccounts().find(
-       account => account.name === name && account.cpf === cpf
-    )
+   const account: bankAccount = getAccountByNameAndCpf(name, cpf)
 
     return account.balance
 }
 
-function addBalance(name: string, cpf: string, valor: number): void {
+function addBalance(name: string, cpf: string, value: number): void {
     
     const allAccounts: bankAccount[] = getAllAccounts()
 
-    const account: bankAccount = allAccounts.find(
-        account => account.name === name && account.cpf === cpf
-    )
+    const account: bankAccount = getAccountByNameAndCpf(name, cpf, allAccounts)
 
-    account.balance += valor
+    account.balance += value
 
     saveInJson(allAccounts)
 
     console.log("Saldo atualizado com sucesso.")
 }
 
-const account: bankAccount = {
-    name: 'Aderbal Piragibe',
-    birthDate: '21/12/1989',
-    cpf: '123.321.123-32',
-    balance: 0.00,
-    extract: []
+
+function run(): void {
+    const operation = process.argv[4]
+
+    if (operation === 'create') {
+        const account: bankAccount = {
+            name: process.argv[5],
+            birthDate: process.argv[6],
+            cpf: process.argv[7],
+            balance: 0.00,
+            extract: []
+        }
+
+        createAccount(account)
+    }
+
+    if (operation === 'getAccounts') {
+        console.log(getAllAccounts())
+    }
+
+    if (operation === 'addBalance') {
+        const name: string = process.argv[5]
+        const cpf: string = process.argv[6]
+        const value: number = Number(process.argv[7])
+
+        addBalance(name, cpf, value)
+    }
+
+    if (operation === 'getBalance') {
+        const name: string = process.argv[5]
+        const cpf: string = process.argv[6]
+
+        console.log(`O saldo do usuário: ${name} com cpf: ${cpf} é R$: ${getBalance(name, cpf).toFixed(2)}`)
+    }
 }
 
-
-/* createAccount(account) */
-/* console.log(getAllAccounts()) */
-addBalance("Aderbal Piragibe", "123.321.123-32", 10)
-console.log(getBalance("Aderbal Piragibe", "123.321.123-32"))  
+run()
