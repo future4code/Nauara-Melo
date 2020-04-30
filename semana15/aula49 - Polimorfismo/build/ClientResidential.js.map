@@ -1,0 +1,1 @@
+{"version":3,"file":"ClientResidential.js","sourceRoot":"","sources":["../src/ClientResidential.ts"],"names":[],"mappings":";;AAEA,MAAa,iBAAiB;IAK1B,YAAY,IAAY,EAAE,kBAA0B,EAAE,cAAsB;QACxE,IAAI,CAAC,IAAI,GAAG,IAAI,CAAC;QACjB,IAAI,CAAC,cAAc,GAAG,cAAc,CAAC;QACrC,IAAI,CAAC,kBAAkB,GAAG,kBAAkB,CAAC;IACjD,CAAC;IAED,aAAa;QACT,OAAO,CAAC,CAAA;IACZ,CAAC;IAAA,CAAC;CAEL;AAfD,8CAeC"}
