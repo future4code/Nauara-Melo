@@ -53,7 +53,7 @@ test("Testing performattack with invalid information ", () => {
     try {
         performAttack(attacker, defender, validatorMock as any); 
     } catch (error) {
-        expect(error.message).toBe("Invalid Person");
+        expect(error.message).toEqual("Invalid Person");
         expect(validatorMock).toHaveBeenCalled();
         expect(validatorMock).toHaveBeenCalledTimes(1);
         expect(validatorMock).toHaveReturnedTimes(1);
