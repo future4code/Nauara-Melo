@@ -1,0 +1,28 @@
+1) Entrada: 
+- input vazio
+- !hasBody
+- !hasQueries
+
+Saída: 
+- "Missing input!"
+- statusCode: 200,
+    body: JSON.stringify({
+        hasBody,
+        hasQueries
+    })
+};
+
+- return {
+    statusCode: 400,
+    body: JSON.stringify({
+        message: err.message
+    })
+};
+
+2) Para transformar o input em um objeto jason e verificar se existe algo no body. 
+
+3) Se houver input e informações no body e queries. 
+
+4) Caso não possua um hasBody e um hasQueries
+
+
