@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var TEACHER_SPECIALITY;
+(function (TEACHER_SPECIALITY) {
+    TEACHER_SPECIALITY["REACT"] = "REACT";
+    TEACHER_SPECIALITY["REDUX"] = "REDUX";
+    TEACHER_SPECIALITY["CSS"] = "CSS";
+    TEACHER_SPECIALITY["TESTES"] = "TESTES";
+    TEACHER_SPECIALITY["TYPESCRIPT"] = "TYPESCRIPT";
+    TEACHER_SPECIALITY["OOP"] = "OOP";
+    TEACHER_SPECIALITY["BACKEND"] = "BACKEND";
+})(TEACHER_SPECIALITY = exports.TEACHER_SPECIALITY || (exports.TEACHER_SPECIALITY = {}));
+//# sourceMappingURL=EnumTeacherSpeciality.js.map

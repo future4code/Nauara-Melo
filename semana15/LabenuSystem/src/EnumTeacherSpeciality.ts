@@ -1,0 +1,9 @@
+export enum TEACHER_SPECIALITY {
+    REACT = "REACT",
+    REDUX = "REDUX",
+    CSS = "CSS",
+    TESTES = "TESTES",
+    TYPESCRIPT = "TYPESCRIPT",
+    OOP = "OOP",
+    BACKEND = "BACKEND",
+}
