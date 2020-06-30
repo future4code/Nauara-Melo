@@ -135,6 +135,4 @@ function appendToNew(array: number[], value: number) {
 }
 ```
 
-A complexidade da function copyArray é `O(n)`, pois depende do tamanho do array(n) e a complexidade da função appendToNew é `O(n²)`, devido ao tamanho do array no for e no push. 
-
-
+A complexidade da function copyArray é `O(n²)`, devido a um for dentro do outro(um loop dentro do outro), uma vez que na função appendToNew tem um for e a complexidade da função appendToNew é `O(n)`, devido ao tamanho do array.
